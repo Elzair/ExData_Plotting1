@@ -5,8 +5,10 @@ plot2 <- function() {
                            header = TRUE, stringsAsFactors = FALSE)                 %>%
                 mutate(Datetime = as.POSIXct(paste(Date, Time), format = "%d/%m/%Y %T"),
                        Date = as.Date(Date, format = "%d/%m/%Y"),
-                       Global_active_power = as.numeric(Global_active_power) / 500) %>%
+                       Global_active_power = as.numeric(Global_active_power)) %>%
                 filter(Date == "2007-02-01" | Date == "2007-02-02")
-    plot(housedat$Global_active_power, type = "l", xlab = "",
+    png(file = "plot2.png", width = 480, height = 480)
+    plot(housedat$Datetime, housedat$Global_active_power, type = "l", xlab = "",
          ylab = "Global Active Power (kilowatts)")
+    dev.off()
 }
