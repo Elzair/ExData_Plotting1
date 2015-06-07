@@ -8,7 +8,7 @@ plot2 <- function() {
                        Global_active_power = as.numeric(Global_active_power)) %>%
                 filter(Date == "2007-02-01" | Date == "2007-02-02")
     png(file = "plot2.png", width = 480, height = 480)
-    plot(housedat$Datetime, housedat$Global_active_power, type = "l", xlab = "",
-         ylab = "Global Active Power (kilowatts)")
+    with(housedat, plot(Datetime, Global_active_power, type = "l", xlab = "",
+                        ylab = "Global Active Power (kilowatts)"))
     dev.off()
 }
